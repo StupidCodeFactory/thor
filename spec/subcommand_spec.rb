@@ -43,6 +43,13 @@ describe Thor do
       sub_help = capture(:stdout) { TestSubcommands::Parent.start(%w[help sub])}
       expect(output).to eq(sub_help)
     end
+
+    context 'when a subcommand as an argument defined' do
+      it "the specific subcommand help should be displayed" do
+        output = capture(:stdout) { TestSubcommands::Parent.start(%w[with_arg help print_arg])}
+        expect(output).to include("Usage:")
+      end
+    end
   end
 
 end
